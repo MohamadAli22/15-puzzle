@@ -79,28 +79,26 @@ public class SlidingTilePuzzle {
 
     public static State limitedSearch(State current, int limit) {
         try {
-            State parrent = (State) current.clone();
+            State parent = (State) current.clone();
             for (GameOperator operator : puzzle.GetOperators(current)) {
+                if(puzzle.isReverseOf(operator, parent.previousOperator)) continue;
 
 //                System.out.println("ope:" + operator + "number of op:" + puzzle.GetOperators(current).size());
                 State s = puzzle.applyOperator(operator, current);
+                s.previousOperator = operator;
                 s.setG(s.getG() + 1);
 
                 if (puzzle.GoalTest(s)) {
-                    s.setParent(parrent);
+                    s.setParent(parent);
                     return s;
                 }
                 if (!visitedStates.contains(s)) {
-                    s.setParent(parrent);
+                    s.setParent(parent);
                     int currentCost = puzzle.mdCalculator(s) + s.getG();
                     if (currentCost <= limit) {
 //                        System.out.println("1 cc" + currentCost);
                         visitedStates.add(s.toString());
                         State solution = limitedSearch(s, limit);
-//                        if (solution != null
-//                                && (bestSolution == null || solution.getG() < bestSolution.getG())) {
-//                            bestSolution = solution; // cache solution so far
-//                        }
                     } else {
 //                        System.out.println("2 cc:" + currentCost + " nl:" + newLimit + " l:" + limit);
                         if (currentCost < newLimit || newLimit == -1) {
@@ -110,6 +108,7 @@ public class SlidingTilePuzzle {
                 }
                 s.setG(s.getG() - 1);
                 puzzle.UndoOperator(operator, s);
+                s.previousOperator = parent.previousOperator;
 
             }
             return null;

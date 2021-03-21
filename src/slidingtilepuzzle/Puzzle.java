@@ -150,4 +150,12 @@ public class Puzzle {
         }
         return distance;
     }
+    
+    public boolean isReverseOf(GameOperator operator1, GameOperator operator2){
+        if(operator1 == GameOperator.DOWN && operator2 == GameOperator.UP) return true;
+        else if(operator1 == GameOperator.UP && operator2 == GameOperator.DOWN) return true;
+        else if(operator1 == GameOperator.LEFT && operator2 == GameOperator.RIGHT) return true;
+        else if(operator1 == GameOperator.RIGHT && operator2 == GameOperator.LEFT) return true;
+        return false;
+    }
 }

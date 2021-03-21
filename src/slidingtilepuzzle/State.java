@@ -5,10 +5,8 @@
  */
 package slidingtilepuzzle;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+import java.util.Arrays;
 /**
  *
  * @author mohamadAli
@@ -20,6 +18,7 @@ public class State implements Cloneable {
     int zeroCol;
     int g;
     State parent;
+    GameOperator previousOperator;
 
     public State(int[][] states, int zeroRow, int zeroCol) {
         this.states = states;
