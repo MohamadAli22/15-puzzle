@@ -7,6 +7,7 @@ package slidingtilepuzzle;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,21 +41,23 @@ public class SlidingTilePuzzle {
                     zeroY = i % 4;
                 }
             }
-            State state = new State(testCase, zeroX, zeroY);
-            visitedStates = new HashSet();
-
-            State parent = solveIDAStar(state);
-            System.out.println("G:" + parent.g);
-            while (parent != null) {
-                System.out.println(parent.toString());
-                parent = parent.parent;
-            }
-
             System.out.println("");
             System.out.println("(4*4) 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15");
-
+            
+            long time = java.lang.System.currentTimeMillis();
+            State state = new State(testCase, zeroX, zeroY);
+            visitedStates = new HashSet();
+            time = java.lang.System.currentTimeMillis() - time;
+            
+            State parent = solveIDAStar(state);
+            
+            int length = -1;
+            while (parent != null) {
+                parent = parent.parent;
+                length++;
+            }
+            System.out.println("Path found!, length:"+length+", time:"+time);
             counter++;
-            break;
         }
     }
 
@@ -68,7 +71,7 @@ public class SlidingTilePuzzle {
         bestSolution = null; // reset global to null
         State result = null;
         while (result == null) {
-            System.out.println("lim: " + limit + "  new lim:" + newLimit);
+            System.out.println("starting iteration with bound: " + limit);
             result = limitedSearch(initialState, limit);
             limit = newLimit;
             newLimit = -1;
@@ -109,7 +112,6 @@ public class SlidingTilePuzzle {
                 s.setG(s.getG() - 1);
                 puzzle.UndoOperator(operator, s);
                 s.previousOperator = parent.previousOperator;
-
             }
             return null;
         } catch (CloneNotSupportedException ex) {
