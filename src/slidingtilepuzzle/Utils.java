@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class Utils {
     
-    ArrayList <int[][]> array ;
+    ArrayList <short[][]> array ;
 
     public ArrayList readFile(String address) {
         array = new ArrayList<>();
@@ -24,12 +24,12 @@ public class Utils {
             File file = new File(address);
             Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
-                int[][] states = new int[4][4];
+                short[][] states = new short[4][4];
                 String data = myReader.nextLine();
                 String[] splited = data.split("\\s+");
                 for (int i=0 ; i<splited.length ; i++){
                     if (i>0 && i<17){
-                        states[(i-1)/4][(i-1)%4] = Integer.parseInt(splited[i]);
+                        states[(i-1)/4][(i-1)%4] = (short) Integer.parseInt(splited[i]);
                     } 
                 }
                 array.add(states);

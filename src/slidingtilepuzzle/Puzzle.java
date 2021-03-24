@@ -107,45 +107,46 @@ public class Puzzle {
     }
 
     public void moveUp(State state) {
-        int upperTile = state.getStates()[state.getZeroRow()-1][state.getZeroCol()];
+        short upperTile = state.getStates()[state.getZeroRow()-1][state.getZeroCol()];
         state.getStates()[state.getZeroRow()-1][state.getZeroCol()] = 0;
         state.getStates()[state.getZeroRow()][state.getZeroCol()] = upperTile;
         
-        state.setZeroRow(state.getZeroRow()-1);
+        state.setZeroRow((short) (state.getZeroRow()-1));
         state.setZeroCol(state.getZeroCol());
     }
 
     public void moveDown(State state) {
-        int bottomTile = state.getStates()[state.getZeroRow()+1][state.getZeroCol()];
+        short bottomTile = state.getStates()[state.getZeroRow()+1][state.getZeroCol()];
         state.getStates()[state.getZeroRow()+1][state.getZeroCol()] = 0;
         state.getStates()[state.getZeroRow()][state.getZeroCol()] = bottomTile;
         
-        state.setZeroRow(state.getZeroRow()+1);
+        state.setZeroRow((short) (state.getZeroRow()+1));
         state.setZeroCol(state.getZeroCol());
     }
 
     public void moveLeft(State state) {
-        int leftTile = state.getStates()[state.getZeroRow()][state.getZeroCol()-1];
+        short leftTile = state.getStates()[state.getZeroRow()][state.getZeroCol()-1];
         state.getStates()[state.getZeroRow()][state.getZeroCol()-1] = 0;
         state.getStates()[state.getZeroRow()][state.getZeroCol()] = leftTile;
         
         state.setZeroRow(state.getZeroRow());
-        state.setZeroCol(state.getZeroCol()-1);
+        state.setZeroCol((short) (state.getZeroCol()-1));
     }
 
     public void moveRight(State state) {
-        int rightTile = state.getStates()[state.getZeroRow()][state.getZeroCol()+1];
+        short rightTile = state.getStates()[state.getZeroRow()][state.getZeroCol()+1];
         state.getStates()[state.getZeroRow()][state.getZeroCol()+1] = 0;
         state.getStates()[state.getZeroRow()][state.getZeroCol()] = rightTile;
         
         state.setZeroRow(state.getZeroRow());
-        state.setZeroCol(state.getZeroCol()+1);
+        state.setZeroCol((short) (state.getZeroCol()+1));
     }
     
-    public int mdCalculator(State state){
-        int distance = 0;
-        for(int i=0; i<16; i++){
-            int value = state.getStates()[i/4][i%4];
+    public short mdCalculator(State state){
+        short distance = 0;
+        for(short i=0; i<16; i++){
+            short value = state.getStates()[i/4][i%4];
+            if(value==0)continue;
             distance += Math.abs((value/4)-(i/4)) + Math.abs((value%4)-(i%4));
         }
         return distance;

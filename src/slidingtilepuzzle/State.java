@@ -13,58 +13,51 @@ import java.util.Arrays;
  */
 public class State implements Cloneable {
 
-    int [][] states;
-    int zeroRow;
-    int zeroCol;
-    int g;
-    State parent;
+    short [][] states;//short could be used instead of int
+    short zeroRow;
+    short zeroCol;
+    short g;
     GameOperator previousOperator;
 
-    public State(int[][] states, int zeroRow, int zeroCol) {
+    public State(short[][] states, short zeroRow, short zeroCol) {
         this.states = states;
         this.zeroRow = zeroRow;
         this.zeroCol = zeroCol;
     }
 
-    public int[][] getStates() {
+
+    public short[][] getStates() {
         return states;
     }
 
-    public void setStates(int[][] states) {
+    public void setStates(short[][] states) {
         this.states = states;
     }
 
-    public int getZeroRow() {
+    public short getZeroRow() {
         return zeroRow;
     }
 
-    public void setZeroRow(int zeroRow) {
+    public void setZeroRow(short zeroRow) {
         this.zeroRow = zeroRow;
     }
 
-    public int getZeroCol() {
+    public short getZeroCol() {
         return zeroCol;
     }
 
-    public void setZeroCol(int zeroCol) {
+    public void setZeroCol(short zeroCol) {
         this.zeroCol = zeroCol;
     }
 
-    public int getG() {
+    public short getG() {
         return g;
     }
 
-    public void setG(int g) {
+    public void setG(short g) {
         this.g = g;
     }
 
-    public State getParent() {
-        return parent;
-    }
-
-    public void setParent(State parent) {
-        this.parent = parent;
-    }
 
 
     @Override
@@ -88,5 +81,5 @@ public class State implements Cloneable {
     {
         State state = (State) super.clone();
         return state;
-    }
+    }   
 }
