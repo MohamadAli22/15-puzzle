@@ -28,6 +28,11 @@ public class SlidingTilePuzzle {
         for (short[][] testCase : testCases) {
             int[][] stateInfo = new int[4][4];
             System.out.printf("Problem %s of 100 \nSearching from:\n(4*4) ", counter);
+//            if(counter ==1 || counter==14 || counter==15 || counter==92 || counter==91 || counter==88 || counter==54 || counter==82 || counter ==76
+//                   ||counter<=63 || counter ==72 || counter==66 || counter==60 || counter==59 || counter ==56 || counter == 53 || counter==49  ){
+//                counter++;
+//                continue;
+//            }
             short zeroX = 0;
             short zeroY = 0;
             for (short i = 0; i < 16; i++) {
