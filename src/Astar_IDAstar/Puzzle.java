@@ -63,9 +63,9 @@ public class Puzzle {
              ar.add(GameOperator.LEFT);
         if(state.getZeroRow()>0)
              ar.add(GameOperator.UP);
-        if(state.getZeroCol()<3)
+        if(state.getZeroCol()<4)
              ar.add(GameOperator.RIGHT);
-        if(state.getZeroRow()<3)
+        if(state.getZeroRow()<4)
              ar.add(GameOperator.DOWN);
         return ar;
     }
@@ -79,29 +79,47 @@ public class Puzzle {
             return false;
         if(state.getStates()[0][3] != 3)
             return false;
-        if(state.getStates()[1][0] != 4)
+        if(state.getStates()[0][4] != 4)
             return false;
-        if(state.getStates()[1][1] != 5)
+        if(state.getStates()[1][0] != 5)
             return false;
-        if(state.getStates()[1][2] != 6)
+        if(state.getStates()[1][1] != 6)
             return false;
-        if(state.getStates()[1][3] != 7)
+        if(state.getStates()[1][2] != 7)
             return false;
-        if(state.getStates()[2][0] != 8)
+        if(state.getStates()[1][3] != 8)
             return false;
-        if(state.getStates()[2][1] != 9)
+        if(state.getStates()[1][4] != 9)
             return false;
-        if(state.getStates()[2][2] != 10)
+        if(state.getStates()[2][0] != 10)
             return false;
-        if(state.getStates()[2][3] != 11)
+        if(state.getStates()[2][1] != 11)
             return false;
-        if(state.getStates()[3][0] != 12)
+        if(state.getStates()[2][2] != 12)
             return false;
-        if(state.getStates()[3][1] != 13)
+        if(state.getStates()[2][3] != 13)
             return false;
-        if(state.getStates()[3][2] != 14)
+        if(state.getStates()[2][4] != 14)
             return false;
-        if(state.getStates()[3][3] != 15)
+        if(state.getStates()[3][0] != 15)
+            return false;
+        if(state.getStates()[3][1] != 16)
+            return false;
+        if(state.getStates()[3][2] != 17)
+            return false;
+        if(state.getStates()[3][3] != 18)
+            return false;
+        if(state.getStates()[3][4] != 19)
+            return false;
+        if(state.getStates()[4][0] != 20)
+            return false;
+        if(state.getStates()[4][1] != 21)
+            return false;
+        if(state.getStates()[4][2] != 22)
+            return false;
+        if(state.getStates()[4][3] != 23)
+            return false;
+        if(state.getStates()[4][4] != 24)
             return false;
         
         return true;
@@ -145,10 +163,10 @@ public class Puzzle {
     
     public short mdCalculator(State state){
         short distance = 0;
-        for(short i=0; i<16; i++){
-            short value = state.getStates()[i/4][i%4];
+        for(short i=0; i<25; i++){
+            short value = state.getStates()[i/5][i%5];
             if(value==0)continue;
-            distance += Math.abs((value/4)-(i/4)) + Math.abs((value%4)-(i%4));
+            distance += Math.abs((value/5)-(i/5)) + Math.abs((value%5)-(i%5));
         }
         return distance;
     }

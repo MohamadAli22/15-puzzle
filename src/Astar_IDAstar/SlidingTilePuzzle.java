@@ -27,20 +27,20 @@ public class SlidingTilePuzzle {
         ArrayList<short[][]> testCases = u.readFile("C:\\Users\\mohamadAli\\Desktop\\korf100.txt");
         int counter = 1;
         for (short[][] testCase : testCases) {
-            int[][] stateInfo = new int[4][4];
+            int[][] stateInfo = new int[5][5];
             System.out.printf("Problem %s of 100 \nSearching from:\n(4*4) ", counter);
             short zeroX = 0;
             short zeroY = 0;
-            for (short i = 0; i < 16; i++) {
-                System.out.print(testCase[i / 4][i % 4] + " ");
-                stateInfo[i / 4][i % 4] = testCase[i / 4][i % 4];
-                if (testCase[i / 4][i % 4] == 0) {
-                    zeroX = (short) (i / 4);
-                    zeroY = (short) (i % 4);
+            for (short i = 0; i < 25; i++) {
+                System.out.print(testCase[i / 5][i % 5] + " ");
+                stateInfo[i / 5][i % 5] = testCase[i / 5][i % 5];
+                if (testCase[i / 5][i % 5] == 0) {
+                    zeroX = (short) (i / 5);
+                    zeroY = (short) (i % 5);
                 }
             }
             System.out.println("");
-            System.out.println("(4*4) 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15");
+            System.out.println("(5*5) 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24");
             
             long time = java.lang.System.currentTimeMillis();
             State state = new State(testCase, zeroX, zeroY);
@@ -64,7 +64,7 @@ public class SlidingTilePuzzle {
         newLimit = -1;
         State result = null;
         while (result == null) {
-            System.out.println("starting iteration with bound: " + limit);
+            System.out.println("Starting iteration with bound: " + limit);
             result = limitedSearch(initialState, limit, null);
             limit = newLimit;
             newLimit = -1;

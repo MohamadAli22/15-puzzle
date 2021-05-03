@@ -75,6 +75,8 @@ public class State implements Cloneable {
         sb.append("\n");
         sb.append(Arrays.toString(states[3]));
         sb.append("\n");
+        sb.append(Arrays.toString(states[4]));
+        sb.append("\n");
         return sb.toString();
     }
     

@@ -25,13 +25,13 @@ public class Utils {
             File file = new File(address);
             Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
-                short[][] states = new short[4][4];
+                short[][] states = new short[5][5];
                 String data = myReader.nextLine();
                 String[] splited = data.split("\\s+");
                 for (int i=0 ; i<splited.length ; i++){
-                    if (i>0 && i<17){
-                        states[(i-1)/4][(i-1)%4] = (short) Integer.parseInt(splited[i]);
-                    } 
+                    if (i>0 && i<26){
+                        states[(i-1)/5][(i-1)%5] = (short) Integer.parseInt(splited[i]);
+                    }
                 }
                 array.add(states);
             }
